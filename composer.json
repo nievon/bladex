@@ -1,0 +1,21 @@
+{
+  "name": "nievon/bladex",
+  "description": "Lightweight MVC PHP framework for educational purposes.",
+  "type": "project",
+  "license": "https://github.com/nievon",
+  "authors": [
+    {
+      "name": "github.nievon"
+    }
+  ],
+  "minimum-stability": "beta",
+  "require": {
+    "twig/twig": "^3.21"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/",
+      "Core\\": "core/"
+    }
+  }
+}
