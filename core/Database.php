@@ -3,10 +3,12 @@
 namespace Core;
 
 use RedBeanPHP\R;
-
+use PDO;
 
 class Database
 {
+    protected static PDO $pdo;
+
     public static function init(array $config)
     {
         R::setup(
@@ -15,7 +17,16 @@ class Database
             $config['password']
         );
 
-        // Отключаем заморозку модели (для dev)
         R::freeze(false);
+
+        // Сохраняем PDO-инстанс
+        self::$pdo = R::getDatabaseAdapter()
+            ->getDatabase()
+            ->getPDO();
+    }
+
+    public static function getInstance(): PDO
+    {
+        return self::$pdo;
     }
 }
