@@ -2,10 +2,18 @@
 
 namespace App\Controllers;
 
+use App\Models\Post;
+
 class HomeController
 {
     public function index()
     {
-        return view('home', ['title' => 'Главная страница', 'h1' => 'Добро пожаловать в Bladex!'] );
+        return view('home', ['title' => 'Главная страница', 'h1' => 'Добро пожаловать в Bladex!']);
+    }
+
+    public function posts()
+    {
+        $posts = Post::all();
+        return view('home', ['title' => 'ORM', 'h1' => 'RedBeanPHP в Bladex!', 'posts' => $posts]);
     }
 }

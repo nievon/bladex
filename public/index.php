@@ -2,11 +2,27 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use Core\Router;
-use Core\View;
 
+use Core\Router;
+use Core\Env;
+use Core\View;
+use Core\Database;
+
+// Загружаем переменные окружения
+Env::load(__DIR__ . '/../');
+
+// Twig
 View::init(__DIR__ . '/../app/Views');
 
+// Подключение к БД из .env
+Database::init([
+    'host' => $_ENV['DB_HOST'],
+    'database' => $_ENV['DB_NAME'],
+    'username' => $_ENV['DB_USER'],
+    'password' => $_ENV['DB_PASS'],
+]);
+
+// Роутинг
 $router = new Router();
 
 // Подключаем маршруты
