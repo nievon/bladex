@@ -11,7 +11,7 @@ $timestamp = date('Ymd_His');
 $filename = "{$timestamp}_{$name}.php";
 
 
-$baseDir = dirname(__DIR__);
+$baseDir = dirname(dirname(__DIR__));
 $migrationsPath = $baseDir . DIRECTORY_SEPARATOR . 'database' . DIRECTORY_SEPARATOR . 'migrations';
 
 
@@ -41,13 +41,18 @@ return new class extends Migration {
     public function up(): void
     {
         // TODO: write SQL to create the table
-        \$this->pdo->exec("");
+        \$this->pdo->exec(" CREATE TABLE IF NOT EXISTS `{$name}` (
+                `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                `text` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+                `created_at` TIMESTAMP NULL DEFAULT NULL
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+        ");
     }
 
     public function down(): void
     {
         // TODO: rollback the migration
-        \$this->pdo->exec("");
+        \$this->pdo->exec("DROP TABLE IF EXISTS `{$name}`");
     }
 };
 PHP;

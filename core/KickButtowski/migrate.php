@@ -1,13 +1,13 @@
 <?php
 
-require __DIR__ . '/../vendor/autoload.php'; // подняться на уровень выше
+require __DIR__ . '/../../vendor/autoload.php'; // подняться на уровень выше
 
 use Dotenv\Dotenv;
 use Core\Database;
 use Core\Env;
 
 // Загружаем переменные окружения
-Env::load(__DIR__ . '/../');
+Env::load(__DIR__ . '/../../');
 
 // Инициализируем подключение к БД
 Database::init([
@@ -18,7 +18,7 @@ Database::init([
 ]);
 
 // Путь к миграциям
-$migrationsPath = dirname(__DIR__) . '/database/migrations';
+$migrationsPath = dirname(dirname(__DIR__)) . '/database/migrations';
 $files = glob($migrationsPath . '/*.php');
 
 if (empty($files)) {

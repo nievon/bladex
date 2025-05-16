@@ -1,0 +1,102 @@
+#!/usr/bin/env php
+<?php
+
+$basePath = __DIR__;
+$command = $argv[1] ?? null;
+$argument = $argv[2] ?? null;
+
+switch ($command) {
+    case 'make:migrate':
+        if (!$argument) {
+            echo "❌ Migration name required.\n";
+            exit(1);
+        }
+
+        // Вызов create_migration.php с именем
+        $script = escapeshellcmd("php core/KickButtowski/create_migration.php {$argument}");
+        passthru($script);
+        break;
+
+    case 'migrate':
+        passthru("php core/KickButtowski/migrate.php");
+        break;
+
+    case 'make:controller':
+        if (!$argument) {
+            echo "❌ Controller name required.\n";
+            exit(1);
+        }
+        makeController($argument);
+        break;
+
+    case 'make:model':
+        if (!$argument) {
+            echo "❌ Model name required.\n";
+            exit(1);
+        }
+        makeModel($argument);
+        break;
+
+    default:
+        echo "KICK BUTTOWSKI\n";
+        echo "Usage:\n";
+        echo "  php KickButtowski make:migrate name\n";
+        echo "  php KickButtowski migrate\n";
+        echo "  php KickButtowski make:controller Name\n";
+        echo "  php KickButtowski make:model Name\n";
+        break;
+}
+
+function makeController($name)
+{
+    $className = ucfirst($name);
+    $path = __DIR__ . "/app/Controllers/{$className}.php";
+
+    $template = <<<PHP
+<?php
+
+namespace App\Controllers;
+
+class {$className}
+{
+    public function index()
+    {
+        echo "Controller {$className} loaded.";
+    }
+}
+PHP;
+
+    if (!is_dir(dirname($path))) {
+        mkdir(dirname($path), 0777, true);
+    }
+
+    file_put_contents($path, $template);
+    echo "✅ Controller created: {$className}.php\n";
+}
+
+function makeModel($name)
+{
+    $className = ucfirst($name);
+    $path = __DIR__ . "/app/Models/{$className}.php";
+
+    $template = <<<PHP
+<?php
+
+namespace App\Models;
+
+use RedBeanPHP\SimpleModel;
+
+class {$className} extends SimpleModel
+{
+    // Add your model logic here
+    protected static string \$table = '{$className}';
+}
+PHP;
+
+    if (!is_dir(dirname($path))) {
+        mkdir(dirname($path), 0777, true);
+    }
+
+    file_put_contents($path, $template);
+    echo "✅ Model created: {$className}.php\n";
+}
