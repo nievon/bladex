@@ -7,7 +7,7 @@ use Core\Router;
 use Core\Env;
 use Core\View;
 use Core\Database;
-
+use Core\Middleware;
 // Загружаем переменные окружения
 Env::load(__DIR__ . '/../');
 

@@ -36,15 +36,49 @@ switch ($command) {
         }
         makeModel($argument);
         break;
-
+    case 'make:middleware':
+        if (!$argument) {
+            echo "❌ Middleware name required.\n";
+            exit(1);
+        }
+        makeMiddleware($argument);
+        break;
     default:
         echo "KICK BUTTOWSKI\n";
         echo "Usage:\n";
         echo "  php KickButtowski make:migrate name\n";
         echo "  php KickButtowski migrate\n";
-        echo "  php KickButtowski make:controller Name\n";
         echo "  php KickButtowski make:model Name\n";
+        echo "  php KickButtowski make:controller Name\n";
+        echo "  php KickButtowski make:middleware Name\n";
         break;
+}
+function makeMiddleware($name)
+{
+    $className = ucfirst($name);
+    $path = __DIR__ . "/app/Middleware/{$className}.php";
+
+    $template = <<<PHP
+<?php
+
+namespace App\Middleware;
+
+class {$className}
+{
+    public function __invoke(\$request, \$next)
+    {
+        // Middleware logic here
+        return \$next(\$request);
+    }
+}
+PHP;
+
+    if (!is_dir(dirname($path))) {
+        mkdir(dirname($path), 0777, true);
+    }
+
+    file_put_contents($path, $template);
+    echo "✅ Middleware created: {$className}.php\n";
 }
 
 function makeController($name)

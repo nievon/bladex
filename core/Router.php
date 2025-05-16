@@ -6,42 +6,45 @@ class Router
 {
     private array $routes = [];
 
-    public function get(string $uri, callable|array $action)
+    public function get(string $uri, callable|array $action, array $middlewares = [])
     {
-        $this->routes['GET'][$uri] = $action;
+        $this->routes['GET'][$uri] = ['action' => $action, 'middleware' => $middlewares];
     }
 
-    public function post(string $uri, callable|array $action)
+    public function post(string $uri, callable|array $action, array $middlewares = [])
     {
-        $this->routes['POST'][$uri] = $action;
+        $this->routes['POST'][$uri] = ['action' => $action, 'middleware' => $middlewares];
     }
 
     public function dispatch(string $uri, string $method)
     {
-        $action = $this->routes[$method][$uri] ?? null;
+        $route = $this->routes[$method][$uri] ?? null;
 
-        if (!$action) {
+        if (!$route) {
             http_response_code(404);
-          return view('home', ['title' => '404', 'h1' => 'Страница не найдена'] );
-
+            return view('home', ['title' => '404', 'text' => 'Page not found']);
         }
 
-        if (is_array($action)) {
-            [$controller, $method] = $action;
-            $controller = "App\\Controllers\\$controller";
-            if (class_exists($controller)) {
-                $instance = new $controller();
-                if (method_exists($instance, $method)) {
-                    return call_user_func([$instance, $method]);
+        $action = $route['action'];
+        $middlewares = $route['middleware'];
+
+        $final = function($request) use ($action) {
+            if (is_array($action)) {
+                [$controller, $method] = $action;
+                $controller = "App\\Controllers\\$controller";
+                if (class_exists($controller)) {
+                    $instance = new $controller();
+                    if (method_exists($instance, $method)) {
+                        return $instance->$method();
+                    }
                 }
+                http_response_code(500);
+              return view('home', ['title' => '500', 'text' => 'Controller or method not found.']);
+
             }
+            return call_user_func($action);
+        };
 
-            http_response_code(500);
-            echo "Controller or method not found.";
-            return;
-        }
-
-        // Если коллбэк
-        return call_user_func($action);
+        return Middleware::run($middlewares, ['uri' => $uri, 'method' => $method], $final);
     }
 }
