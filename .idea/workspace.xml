@@ -42,6 +42,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "C:/OSPanel/domains",
+    "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -59,6 +60,8 @@
       <option name="presentableId" value="Default" />
       <updated>1747319383817</updated>
       <workItem from="1747319385581" duration="1644000" />
+      <workItem from="1747413034254" duration="5403000" />
+      <workItem from="1747508569059" duration="981000" />
     </task>
     <servers />
   </component>
