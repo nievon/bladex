@@ -14,6 +14,13 @@
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+      </list>
+    </option>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -61,7 +68,7 @@
       <updated>1747319383817</updated>
       <workItem from="1747319385581" duration="1644000" />
       <workItem from="1747413034254" duration="5403000" />
-      <workItem from="1747508569059" duration="981000" />
+      <workItem from="1747508569059" duration="2564000" />
     </task>
     <servers />
   </component>

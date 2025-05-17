@@ -122,4 +122,56 @@ main {
     display: flex;
     align-items: center;
     flex-direction: column;
+    margin-top: 10rem;
+}
+
+.container-header {
+    margin: 3rem;
+    border-radius: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(6px); /* легкий размытие заднего фона */
+    box-shadow: 0 2px 20px rgba(206, 159, 6, 0.3);
+    display: flex;
+    align-items: center;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    z-index: 999;
+}
+
+.header-link {
+    color: #ddd !important;
+    text-shadow: 0 0 5px rgba(206, 159, 6, 0.2) !important
+}
+
+.header-link-logo {
+    font-size: none !important;
+    color: none !important;
+    text-shadow: none !important;
+    line-height: none !important;
+    opacity: none !important;
+    transition: none !important;
+    text-decoration: none !important;
+    height: 52px !important;
+    opacity: 1 !important;
+}
+
+.header-link-logo:hover {
+    font-size: none !important;
+    color: none !important;
+    text-shadow: none !important;
+    line-height: none !important;
+    opacity: none !important;
+    transition: none !important;
+    text-decoration: none !important;
+    height: 52px !important;
+    opacity: 0.8 !important;
+}
+
+.header-link:hover {
+    color: rgba(206, 159, 6, 0.8) !important;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.1) !important;
 }
