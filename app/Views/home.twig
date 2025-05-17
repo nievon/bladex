@@ -7,152 +7,38 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
-    <style>
-        /* Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Russo One", sans-serif;
-            font-weight: 400;
-            font-style: normal;
-        }
-
-        body {
-            background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
-            color: #f1f1f1;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            padding: 2rem;
-            transition: all 0.3s ease;
-        }
-
-        @keyframes rotate {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        .rotating {
-            animation: rotate 4s linear infinite;
-        }
-        .d-flex{
-            display: flex;
-        }
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(90deg, #e1e1e1, #cccccc); /* Плавный серо-белый градиент */
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 15px rgba(94, 94, 94, 0.6); /* Светлый текстовый тень */
-            transition: text-shadow 0.5s ease;
-        }
-
-        h1:hover {
-            opacity: 0.8;
-        }
-
-        p {
-            font-size: 1.25rem;
-            color: #ddd; /* Светло-серый текст */
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
-            line-height: 1.6;
-            opacity: 0.8;
-            transition: opacity 0.3s ease;
-        }
-
-        p:hover {
-            opacity: 1;
-        }
-
-        a {
-            font-size: 1.25rem;
-            color: rgba(206, 159, 6, 0.8);
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
-            line-height: 1.6;
-            opacity: 0.8;
-            transition: opacity 0.3s ease;
-            text-decoration: none;
-        }
-
-        a:hover {
-            color: #ddd;
-            text-shadow: 0 0 15px rgba(206, 159, 6, 0.8);
-            transition: 0.3s;
-            opacity: 1;
-        }
-
-        .container {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 2rem;
-            border-radius: 1.5rem;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
-            text-align: center;
-            max-width: 600px;
-            margin: 0.7rem;
-            transform: translateY(0);
-            animation: fadeInUp 1s ease-out;
-            transition: transform 0.3s ease-out;
-        }
-
-        .container:hover {
-            transform: translateY(-10px);
-        }
-
-        @keyframes fadeInUp {
-            0% {
-                transform: translateY(20px);
-                opacity: 0;
-            }
-            100% {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 2.2rem;
-            }
-
-            p {
-                font-size: 1rem;
-            }
-        }
-
-    </style>
+    <link rel="stylesheet" href="/public/css/style.css">
 </head>
 <body>
-<div class="container"
-     style="margin: 3rem;  border-radius: 1rem; padding: 1rem;  box-shadow: 0 0 30px rgba(206,159,6,0.8);">
-    <img style="opacity: 0.75;" class="rotating" src="aa.png">
-</div>
-<div class="container">
-    <h1>{{ title }}</h1>
-    <p>{{ text }}</p>
-    {% if posts is not defined or posts|length == 0 %}
-        <a href="posts">Тест ORM</a>
+<header>
+    <div class="container-header">
+        <a class="header-link" href="https://bladex.com">Home</a>
+        <a class="header-link-logo" href="/">
+            <img style="opacity: 0.75; width: 152px; height: 52px;" src="image1.png" alt="logo">
+        </a>
+        <a class="header-link" href="https://github.com/nievon/bladex">GitHub</a>
+    </div>
+</header>
+<main>
+    <div class="container">
+        <h1>{{ title }}</h1>
+        <p>{{ text }}</p>
+        {% if posts is not defined or posts|length == 0 %}
+            <a href="posts">Тест ORM</a>
         {% else %}
-        <a href="/">Главная</a>
-    {% endif %}
-</div>
-<div class="d-flex">
-    {% if posts is defined and posts|length > 0 %}
-        {% for post in posts %}
-            <div class="container">
-                <h2>{{ post.title }}</h2>
-                <p>{{ post.text }}</p>
-            </div>
-        {% endfor %}
-    {% endif %}
-</div>
+            <a href="/">Главная</a>
+        {% endif %}
+    </div>
+    <div class="d-flex">
+        {% if posts is defined and posts|length > 0 %}
+            {% for post in posts %}
+                <div class="container">
+                    <h2>{{ post.title }}</h2>
+                    <p>{{ post.text }}</p>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</main>
 </body>
 </html>

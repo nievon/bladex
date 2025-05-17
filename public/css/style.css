@@ -1,0 +1,177 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Russo One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+    background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+    color: #f1f1f1;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 2rem;
+    transition: all 0.3s ease;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.rotating {
+    animation: rotate 4s linear infinite;
+}
+
+.d-flex {
+    display: flex;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(90deg, #e1e1e1, #cccccc); /* Плавный серо-белый градиент */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 15px rgba(94, 94, 94, 0.6); /* Светлый текстовый тень */
+    transition: text-shadow 0.5s ease;
+}
+
+h1:hover {
+    opacity: 0.8;
+}
+
+p {
+    font-size: 1.25rem;
+    color: #ddd; /* Светло-серый текст */
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+    line-height: 1.6;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+p:hover {
+    opacity: 1;
+}
+
+a {
+    font-size: 1.25rem;
+    color: rgba(206, 159, 6, 0.8);
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+    line-height: 1.6;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #ddd;
+    text-shadow: 0 0 15px rgba(206, 159, 6, 0.8);
+    transition: 0.3s;
+    opacity: 1;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+    text-align: center;
+    max-width: 600px;
+    margin: 0.7rem;
+    transform: translateY(0);
+    animation: fadeInUp 1s ease-out;
+    transition: transform 0.3s ease-out;
+}
+
+.container:hover {
+    transform: translateY(-10px);
+}
+
+@keyframes fadeInUp {
+    0% {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2.2rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+}
+
+main {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 10rem;
+}
+
+.container-header {
+    margin: 3rem;
+    border-radius: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(6px); /* легкий размытие заднего фона */
+    box-shadow: 0 2px 20px rgba(206, 159, 6, 0.3);
+    display: flex;
+    align-items: center;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    z-index: 999;
+}
+
+.header-link {
+    color: #ddd !important;
+    text-shadow: 0 0 5px rgba(206, 159, 6, 0.2) !important
+}
+
+.header-link-logo {
+    font-size: none !important;
+    color: none !important;
+    text-shadow: none !important;
+    line-height: none !important;
+    opacity: none !important;
+    transition: none !important;
+    text-decoration: none !important;
+    height: 52px !important;
+    opacity: 1 !important;
+}
+
+.header-link-logo:hover {
+    font-size: none !important;
+    color: none !important;
+    text-shadow: none !important;
+    line-height: none !important;
+    opacity: none !important;
+    transition: none !important;
+    text-decoration: none !important;
+    height: 52px !important;
+    opacity: 0.8 !important;
+}
+
+.header-link:hover {
+    color: rgba(206, 159, 6, 0.8) !important;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.1) !important;
+}
