@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Error 404 – Page Not Found</title>
+    <link rel="stylesheet" href="/public/css/style.css">
+    <style>
+        .error-container {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(141, 110, 4, 0.73);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 0 20px rgba(157, 121, 2, 0.62);
+            max-width: 700px;
+            margin: 2rem auto;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .error-icon {
+            font-size: 5rem;
+            color: #4488ff;
+            text-shadow: 0 0 20px rgba(0, 100, 255, 0.5);
+        }
+
+        .error-message {
+            font-size: 1.2rem;
+            color: #ddeeff;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container-header">
+        <a class="header-link" href="https://bladex.com">Home</a>
+        <a class="header-link-logo" href="/">
+            <img style="opacity: 0.75; width: 152px; height: 52px;" src="image1.png" alt="logo">
+        </a>
+        <a class="header-link" href="https://github.com/nievon/bladex">GitHub</a>
+    </div>
+</header>
+
+<main>
+    <div class="container error-container">
+        <div class="error-icon">🔍</div>
+        <h1>{{ title }}</h1>
+        <p class="error-message">
+            {{ text }}
+        </p>
+        <p class="error-message">
+            <a href="/" style="color: #aaccff; text-decoration: none;">Main Page</a>
+        </p>
+    </div>
+</main>
+
+</body>
+</html>
