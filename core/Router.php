@@ -22,7 +22,7 @@ class Router
 
         if (!$route) {
             http_response_code(404);
-            return view('home', ['title' => '404', 'text' => 'Page not found']);
+            return view('errors/400', ['title' => '404', 'text' => 'The page you are looking for doesnt exist or has been moved.']);
         }
 
         $action = $route['action'];
