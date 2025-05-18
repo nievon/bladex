@@ -5,24 +5,22 @@
 {% block content %}
     <h1>Каталог телефонов</h1>
 
-    <div class="d-flex" style="flex-wrap: wrap; justify-content: center; gap: 1rem;">
+    <div class="catalog-grid">
         {% for product in products %}
-            <div class="container" style="flex: 1 1 300px; max-width: 350px;">
+            <div class="container card">
                 {% if product.image %}
-                    <img src="{{ product.image }}" alt="{{ product.title }}"
-                         style="width: 100%; border-radius: 0.75rem; margin-bottom: 1rem; object-fit: cover; max-height: 200px;">
+                    <img src="images/phone/{{ product.image }}" alt="{{ product.title }}" class="product-image">
                 {% else %}
-                    <img src="images/lion.jpg" alt="Нет изображения"
-                         style="width: 100%; border-radius: 0.75rem; margin-bottom: 1rem; opacity: 0.5; object-fit: cover; max-height: 200px;">
+                    <img src="images/phone/lion.jpg" alt="Нет изображения" class="product-image placeholder">
                 {% endif %}
-                <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem;">{{ product.title }}</h2>
-                <p style="margin-bottom: 1rem;">{{ product.description|default('Описание скоро появится.') }}</p>
-                <p><strong>{{ product.price }} ₽</strong></p>
 
-                <form method="post" action="/cart/add" style="margin-top: 1rem;">
+                <h2 class="product-title">{{ product.title }}</h2>
+                <p class="product-description">{{ product.description|default('Описание скоро появится.') }}</p>
+                <p class="product-price"><strong>{{ product.price }} ₽</strong></p>
+
+                <form method="post" action="/cart/add" class="add-to-cart-form">
                     <input type="hidden" name="product_id" value="{{ product.id }}">
-                    <button type="submit"
-                            style="padding: 0.6rem 1.2rem; background: rgba(206, 159, 6, 0.8); border: none; border-radius: 0.5rem; text-shadow: 0 0 15px rgb(0,0,0); color: #ddd; font-size: 1rem; cursor: pointer; transition: background 0.3s;">В корзину</button>
+                    <button type="submit" class="add-to-cart-button">В корзину</button>
                 </form>
             </div>
         {% else %}
