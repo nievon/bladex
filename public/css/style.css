@@ -260,7 +260,12 @@ header {
     border-radius: 0.75rem;
 }
 
-
+.input{
+    margin: 0.2rem;
+    padding: 0.2rem;
+    border-radius: 0.3rem;
+    border: none;
+}
 .product-image.placeholder {
     opacity: 0.5;
     height: 180px;

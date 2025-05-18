@@ -21,9 +21,12 @@ class ProductController
     // Страница одного товара
     public function show($id)
     {
+
         $product = ProductsModel::find($id);
-        if (!$product) {
-            return view('errors/404');
+
+        if (!$product['title']) {
+            return view('errors/400', ['title' => '404', 'text' => 'The page you are looking for doesnt exist or has been moved.']);
+
         }
 
         return view('products/show', ['product' => $product]);

@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-       <title>{% block title %}{{ title|default('BladeXShop') }}{% endblock %}</title>
+    <title>{% block title %}{{ title|default('BladeXShop') }}{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,9 +14,15 @@
     <div class="container-header">
         <a class="header-link" href="https://bladex.com">Home</a>
         <a class="header-link-logo" href="/">
-            <img style="opacity: 0.75; width: 152px; height: 52px;" src="image1.png" alt="logo">
+            <img style="opacity: 0.75; width: 152px; height: 52px;" src="/image1.png" alt="logo">
         </a>
-        <a class="header-link" href="https://github.com/nievon/bladex">GitHub</a>
+        {% if session.user %}
+            <a class="header-link" href="/cart">{{ session.user.name }}</a>
+        {% else %}
+            <a class="header-link" href="/login">Login</a>
+        {% endif %}
+
+
     </div>
 </header>
 <main>

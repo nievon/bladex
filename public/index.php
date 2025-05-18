@@ -1,7 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../vendor/autoload.php';
-
+session_start();
 
 use Core\Router;
 use Core\Env;
@@ -16,6 +16,8 @@ try {
 // Twig
     View::init(__DIR__ . '/../app/Views');
 
+// 💡 Добавляем глобальную переменную сессии в Twig
+    View::getTwig()->addGlobal('session', $_SESSION);
 // Подключение к БД из .env
     Database::init([
         'host' => $_ENV['DB_HOST'],

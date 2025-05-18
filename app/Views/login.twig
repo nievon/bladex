@@ -1,0 +1,20 @@
+{% extends "home.twig" %}
+
+{% block title %}Каталог телефонов{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h2>Login</h2>
+        {% if error %}<p style="color:red">{{ error }}</p>{% endif %}
+        <form method="post" action="/login">
+            <label>
+                <input class="input" name="phone" type="phone" placeholder="Phone" required>
+            </label><br>
+            <label>
+                <input class="input" name="password" type="password" placeholder="Password" required>
+            </label><br>
+            <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href="/register">Register</a></p>
+    </div>
+{% endblock %}

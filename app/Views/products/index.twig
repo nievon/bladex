@@ -8,12 +8,13 @@
     <div class="catalog-grid">
         {% for product in products %}
             <div class="container card">
-                {% if product.image %}
-                    <img src="images/phone/{{ product.image }}" alt="{{ product.title }}" class="product-image">
-                {% else %}
-                    <img src="images/phone/lion.jpg" alt="Нет изображения" class="product-image placeholder">
-                {% endif %}
-
+                <a href="/product/{{ product.id }}">
+                    {% if product.image %}
+                        <img src="images/phone/{{ product.image }}" alt="{{ product.title }}" class="product-image">
+                    {% else %}
+                        <img src="images/phone/lion.jpg" alt="Нет изображения" class="product-image placeholder">
+                    {% endif %}
+                </a>
                 <h2 class="product-title">{{ product.title }}</h2>
                 <p class="product-description">{{ product.description|default('Описание скоро появится.') }}</p>
                 <p class="product-price"><strong>{{ product.price }} ₽</strong></p>

@@ -1,0 +1,24 @@
+{% extends "home.twig" %}
+
+{% block title %}{{ product.title }}{% endblock %}
+{% block content %}
+       <div class="container card">
+        <h1 class="product-title">{{ product.title }}</h1>
+
+        {% if product.image %}
+            <img src="/images/phone/{{ product.image }}" alt="{{ product.title }}" class="product-image">
+        {% else %}
+            <img src="/images/phone/lion.jpg" alt="Нет изображения" class="product-image placeholder">
+        {% endif %}
+
+        {% if product.description %}
+            <p class="product-description">{{ product.description }}</p>
+        {% endif %}
+
+        {% if product.price %}
+            <p class="product-price">Цена: {{ product.price }} ₽</p>
+        {% endif %}
+
+        <a href="/" class="add-to-cart-button" style="display:inline-block; margin-top: 1rem;">Назад к списку</a>
+    </div>
+{% endblock %}
