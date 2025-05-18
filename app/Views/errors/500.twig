@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Error 500 – Internal Server Error</title>
+    <link rel="stylesheet" href="/public/css/style.css">
+    <style>
+        .error-container {
+            background: rgba(100, 0, 0, 0.3);
+            border: 2px solid rgba(200, 0, 0, 0.5);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 0 40px rgba(255, 0, 0, 0.2);
+            max-width: 700px;
+            margin: 2rem auto;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .error-icon {
+            font-size: 5rem;
+            color: #ff4444;
+            text-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+        }
+
+        .error-message {
+            font-size: 1.2rem;
+            color: #ffdddd;
+            margin-top: 1.5rem;
+            text-align: left;
+        }
+
+        .error-details summary {
+            cursor: pointer;
+            font-weight: bold;
+            color: #ff9999;
+            margin-top: 1rem;
+        }
+
+        .error-details pre {
+            margin-top: 1rem;
+            background: #1e1e1e;
+            color: #f8d7da;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container-header">
+        <a class="header-link" href="https://bladex.com">Home</a>
+        <a class="header-link-logo" href="/">
+            <img style="opacity: 0.75; width: 152px; height: 52px;" src="image1.png" alt="logo">
+        </a>
+        <a class="header-link" href="https://github.com/nievon/bladex">GitHub</a>
+    </div>
+</header>
+
+<main>
+    <div class="container error-container">
+        <div class="error-icon">⚠️</div>
+        <h1>Internal Server Error</h1>
+        <p>Something went wrong. Please try again later or contact your administrator.</p>
+
+        <div class="error-message">
+            <p><strong>Message:</strong> {{ message }}</p>
+            <p><strong>File:</strong> {{ file }}</p>
+            <p><strong>Line:</strong> {{ line }}</p>
+        </div>
+
+        <div class="error-details">
+            <details>
+                <summary>More details (call stack)</summary>
+                <pre>{{ trace }}</pre>
+            </details>
+        </div>
+    </div>
+</main>
+
+</body>
+</html>
