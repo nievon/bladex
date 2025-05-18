@@ -118,9 +118,9 @@ function makeModel($name)
 
 namespace App\Models;
 
-use RedBeanPHP\SimpleModel;
+use Core\Model;
 
-class {$className} extends SimpleModel
+class {$className} extends Model
 {
     // Add your model logic here
     protected static string \$table = '{$className}';
