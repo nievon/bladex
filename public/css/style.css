@@ -129,7 +129,7 @@ main {
     margin: 3rem;
     border-radius: 1rem;
     padding: 1rem;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgb(21 21 21 / 87%);;
     backdrop-filter: blur(6px); /* легкий размытие заднего фона */
     box-shadow: 0 2px 20px rgba(206, 159, 6, 0.3);
     display: flex;
