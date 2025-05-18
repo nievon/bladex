@@ -1,0 +1,40 @@
+{% extends "home.twig" %}
+
+{% block title %}Корзина{% endblock %}
+
+{% block content %}
+    <h1>Корзина</h1>
+
+    {% if cartItems is not empty %}
+        <div class="catalog-grid">
+            {% for item in cartItems %}
+                <div class="container card">
+                    <img class="product-image"
+                         src="/images/phone/{{ item.product.image ?? '/images/phone/placeholder.png' }}"
+                         alt="{{ item.product.title }}">
+                    <div class="product-title">{{ item.product.title }}</div>
+                    <div class="product-description">
+                        {{ item.product.description[:100] ~ (item.product.description|length > 100 ? '...' : '') }}
+                    </div>
+                    <div class="product-price" style="margin-bottom: 1rem;">{{ item.product.price }} ₽</div>
+
+                    <a href="/cart/remove/{{ item.product_id }}" type="submit" class="add-to-cart-button" style="margin-top: 12rem;">Удалить</a>
+
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="container" style="margin-top: 2rem;">
+            <p><strong>Итого:</strong> {{ cartItems|reduce((sum, item) => sum + item.product.price, 0) }} ₽</p>
+
+            <form method="post" action="/order/create">
+                <button class="add-to-cart-button" type="submit">Оформить заказ</button>
+            </form>
+        </div>
+    {% else %}
+        <div class="container">
+            <p>Ваша корзина пуста</p>
+            <a href="/">Вернуться в каталог</a>
+        </div>
+    {% endif %}
+{% endblock %}

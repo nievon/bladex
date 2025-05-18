@@ -12,12 +12,17 @@
 <body>
 <header>
     <div class="container-header">
-        <a class="header-link" href="https://bladex.com">Home</a>
+
+        {% if session.user %}
+            <a class="header-link" href="/cart">{{ session.user.name }}</a>
+        {% else %}
+             <a class="header-link" href="https://bladex.com">Home</a>
+        {% endif %}
         <a class="header-link-logo" href="/">
             <img style="opacity: 0.75; width: 152px; height: 52px;" src="/image1.png" alt="logo">
         </a>
         {% if session.user %}
-            <a class="header-link" href="/cart">{{ session.user.name }}</a>
+            <a class="header-link" href="/logout">Выйти</a>
         {% else %}
             <a class="header-link" href="/login">Login</a>
         {% endif %}

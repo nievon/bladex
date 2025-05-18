@@ -8,6 +8,7 @@ use App\Models\Cart_itemsModel;
 use App\Models\UsersModel;
 use App\Models\Order_itemsModel;
 use Core\View;
+use RedBeanPHP\R;
 
 class ProductController
 {
@@ -33,39 +34,46 @@ class ProductController
     }
 
     // Добавление товара в корзину
-    public function addToCart(Request $request)
+    public function addToCart()
     {
-        $userId = Auth::id(); // предполагаем, что пользователь авторизован
 
-        $productId = $request->input('product_id');
-        $quantity = $request->input('quantity', 1);
+        $userId = $_SESSION['user']['id'];
 
-        $existingItem = CartItem::where('user_id', $userId)
-            ->where('product_id', $productId)
-            ->first();
+        // Получаем данные из $_POST
+        $productId = isset($_POST['product_id']) ? (int)$_POST['product_id'] : null;
+        $quantity = isset($_POST['quantity']) ? (int)$_POST['quantity'] : 1;
+
+        if (!$productId) {
+            // Обработка ошибки, например, редирект с сообщением
+            $_SESSION['error'] = 'Не указан ID продукта';
+            header('Location: /catalog');
+            exit;
+        }
+
+        $existingItem = R::findOne('cartitems', 'user_id = ? AND product_id = ?', [$userId, $productId]);
 
         if ($existingItem) {
             $existingItem->quantity += $quantity;
             $existingItem->save();
         } else {
-            CartItem::create([
+            Cart_itemsModel::create([
                 'user_id' => $userId,
                 'product_id' => $productId,
                 'quantity' => $quantity
             ]);
         }
 
-        Session::flash('success', 'Товар добавлен в корзину');
-        return redirect('/cart');
+        $_SESSION['success'] = 'Товар добавлен в корзину';
+        header('Location: /cart');
+        exit;
     }
 
     // Корзина пользователя
     public function cart()
     {
-        $userId = Auth::id();
-        $cartItems = CartItem::with('product')
-            ->where('user_id', $userId)
-            ->get();
+        $session = $_SESSION['user'];
+        $userId = $session['id'];
+        $cartItems = Cart_itemsModel::getItemsWithProduct($userId);
 
         return view('cart/index', ['cartItems' => $cartItems]);
     }
@@ -73,14 +81,18 @@ class ProductController
     // Удалить товар из корзины
     public function removeFromCart($itemId)
     {
-        $userId = Auth::id();
-        $item = Cart_itemsModel::where('id', $itemId)->where('user_id', $userId)->first();
+        $userId = $_SESSION['user']['id'];
+        $item = R::getAll('SELECT * FROM cartitems WHERE user_id = ? AND product_id = ?', [$userId, $itemId]);
 
-        if ($item) {
-            $item->delete();
+        if (!empty($item)) {
+
+            foreach ($item as $row) {
+
+                $bean = R::load('cartitems', $row['id']);
+                R::trash($bean); // Удаляем объект
+            }
         }
 
-        Session::flash('success', 'Товар удалён из корзины');
         return redirect('/cart');
     }
 }

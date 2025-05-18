@@ -10,7 +10,7 @@ $router->post('/cart/add', ['ProductController', 'addToCart'], [new CheckAuthMid
 
 $router->get('/cart', ['ProductController', 'cart'], [new CheckAuthMiddleware()]); // Просмотр корзины
 
-$router->post('/cart/remove/{id}', ['ProductController', 'removeFromCart'], [new CheckAuthMiddleware()]); // Удаление из корзины
+$router->get('/cart/remove/{id}', ['ProductController', 'removeFromCart'], [new CheckAuthMiddleware()]); // Удаление из корзины
 
 
 $router->get('/login', ['AuthController', 'loginForm']);

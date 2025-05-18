@@ -6,7 +6,7 @@ return new class extends Migration {
     public function up(): void
     {
         // TODO: write SQL to create the table
-        $this->pdo->exec(" CREATE TABLE order_items (
+        $this->pdo->exec(" CREATE TABLE orderitems (
     id INT AUTO_INCREMENT PRIMARY KEY,
     order_id INT NOT NULL,
     product_id INT NOT NULL,
