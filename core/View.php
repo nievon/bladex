@@ -22,4 +22,9 @@ class View
     {
         echo self::$twig->render($template . '.twig', $data);
     }
+
+    public static function getTwig(): Environment
+    {
+        return self::$twig;
+    }
 }
